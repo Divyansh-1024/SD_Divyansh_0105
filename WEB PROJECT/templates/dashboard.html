@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        :root {
+            --ink:        #101826;
+            --slate:      #45526b;
+            --mist:       #eef1f6;
+            --line:       #dde2ec;
+            --paper:      #ffffff;
+            --accent:     #1f6f5c;
+            --accent-dark:#154f41;
+            --danger:     #b3432f;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            background: var(--mist);
+            color: var(--ink);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ---------- Navbar ---------- */
+        .navbar {
+            width: 100%;
+            background: var(--ink);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.9rem 2rem;
+        }
+
+        .navbar .brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar .brand span {
+            color: var(--accent);
+        }
+
+        .navbar nav a {
+            color: #cfd6e4;
+            text-decoration: none;
+            margin-left: 1.75rem;
+            font-size: 0.95rem;
+            transition: color 0.15s ease;
+        }
+
+        .navbar nav a:hover,
+        .navbar nav a:focus-visible {
+            color: #ffffff;
+        }
+
+        /* ---------- Main content ---------- */
+        .dashboard {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .dashboard h1 {
+            margin: 0 0 0.25rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .dashboard h2 {
+            margin: 0 0 2rem;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--slate);
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(16, 24, 38, 0.06);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        tr {
+            border-bottom: 1px solid var(--line);
+        }
+
+        tr:last-child {
+            border-bottom: none;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        th {
+            width: 160px;
+            color: var(--slate);
+            font-weight: 600;
+            background: #f7f9fc;
+        }
+
+        td {
+            color: var(--ink);
+        }
+
+        .logout-row {
+            margin-top: 2rem;
+        }
+
+        .btn-logout {
+            display: inline-block;
+            background: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .btn-logout:hover,
+        .btn-logout:focus-visible {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            width: 100%;
+            background: var(--ink);
+            color: #9aa5b8;
+            text-align: center;
+            padding: 1.25rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: #cfd6e4;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 0.9rem 1.25rem;
+            }
+            .navbar nav a {
+                margin-left: 1rem;
+            }
+            .dashboard {
+                padding: 2rem 1.25rem;
+            }
+            th {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/dashboard" class="brand">Acme<span>Panel</span></a>
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/profile">Profile</a>
+            <a href="/settings">Settings</a>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h1>Dashboard</h1>
+        <h2>Welcome back, {{ user.name }}</h2>
+
+        <div class="card">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Phone</th>
+                    <td>{{ user.phone }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="logout-row">
+            <a href="/login" class="btn-logout">Logout</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        &copy; {{ 2026 }} AcmePanel. All rights reserved. &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a>
+    </footer>
+
+</body>
+</html>
